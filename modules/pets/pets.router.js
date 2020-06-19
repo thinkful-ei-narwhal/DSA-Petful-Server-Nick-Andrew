@@ -6,12 +6,6 @@ const People = require("../people/people.service");
 
 const router = express.Router();
 
-// router.get("/", (req, res, next) => {
-//   // Return all pets currently up for adoption.
-//   const cats = Pets.getAllCats();
-//   res.json(cats);
-// });
-
 router
   .route("/cat")
   .get((req, res, next) => {

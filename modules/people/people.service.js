@@ -7,18 +7,30 @@ const store = require("../../store");
 const people = new Queue();
 store.people.forEach((person) => people.enqueue(person));
 
+function serializePerson(personName) {
+  return {
+    name: personName,
+  };
+}
+
 // --------------------
 
 module.exports = {
-  get() {
-    // Return all people in the queue.
+  getAllPeople() {
+    const peopleInQueue = people.all();
+    console.log("TESTING", people);
+    const peopleSerialized = peopleInQueue.map((people) => {
+      return serializePerson(people.value);
+    });
+    return peopleSerialized;
   },
-
-  enqueue(person) {
-    // Add a person to the queue.
+  enqueue(personName) {
+    people.enqueue(personName);
+    return serializePerson(personName);
   },
-
   dequeue() {
-    // Remove a person from the queue.
+    const person = people.dequeue();
+    const peopleSerialized = serializePerson(person.value);
+    return peopleSerialized;
   },
 };
