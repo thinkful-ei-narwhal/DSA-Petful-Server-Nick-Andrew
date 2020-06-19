@@ -1,5 +1,6 @@
 const Queue = require("../queue/Queue");
 const store = require("../../store");
+const { cats, dogs } = require("../../store");
 
 // Set up initial data.
 // --------------------
@@ -37,7 +38,7 @@ module.exports = {
   },
   getAllDogs() {
     // Return the pets next in line to be adopted.
-    pets.cats.all();
+    pets.dogs.all();
   },
   getNextCat() {
     const cat = pets.cats.show();
@@ -50,6 +51,11 @@ module.exports = {
     return dogSerialized;
   },
   dequeue(type) {
-    // Remove a pet from the queue.
+    if (type !== "cat" && type !== "dog") {
+      throw new Error("Supply the correct type to dequeue");
+    }
+    return type === "cat"
+      ? serializePet(pets.cats.dequeue())
+      : serializePet(pets.dogs.dequeue());
   },
 };

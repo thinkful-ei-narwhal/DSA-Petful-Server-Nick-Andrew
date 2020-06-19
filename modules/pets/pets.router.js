@@ -12,20 +12,28 @@ const router = express.Router();
 //   res.json(cats);
 // });
 
-router.get("/cat", (req, res, next) => {
-  // Return all pets currently up for adoption.
-  const cat = Pets.getNextCat();
-  res.json(cat);
-});
+router
+  .route("/cat")
+  .get((req, res, next) => {
+    // Return all pets currently up for adoption.
+    const cat = Pets.getNextCat();
+    res.json(cat);
+  })
+  .delete((req, res) => {
+    const removedAnimal = Pets.dequeue("cat");
+    res.status(204).json(removedAnimal).end();
+  });
 
-router.get("/dog", (req, res) => {
-  // Return all pets currently up for adoption.
-  const dog = Pets.getNextDog();
-  res.json(dog);
-});
-
-router.delete("/", json, (req, res) => {
-  // Remove a pet from adoption.
-});
+router
+  .route("/dog")
+  .get((req, res) => {
+    // Return all pets currently up for adoption.
+    const dog = Pets.getNextDog();
+    res.json(dog);
+  })
+  .delete((req, res) => {
+    const removedAnimal = Pets.dequeue("dog");
+    res.status(204).json(removedAnimal).end();
+  });
 
 module.exports = router;
