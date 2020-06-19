@@ -37,16 +37,19 @@ class Queue {
   }
 
   show() {
-    console.log(this.first);
+    // console.log(this.first);
     return this.first;
   }
 
   all() {
     let node = this.first;
+    let animalQueue = [];
     while (node) {
-      console.log(node);
+      // console.log(node);
+      animalQueue.push(node);
       node = node.next;
     }
+    return animalQueue;
   }
 }
 
