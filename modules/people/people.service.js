@@ -18,7 +18,6 @@ function serializePerson(personName) {
 module.exports = {
   getAllPeople() {
     const peopleInQueue = people.all();
-    console.log("TESTING", people);
     const peopleSerialized = peopleInQueue.map((people) => {
       return serializePerson(people.value);
     });

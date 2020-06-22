@@ -16,10 +16,15 @@ router
     res.status(204).json(removedPerson).end();
   });
 
-router.post("/:name", json, (req, res) => {
+router.post("/", json, (req, res) => {
   // Add a new person to the queue.
-  const personQueued = People.enqueue(req.params.name);
-  res.json(personQueued);
+  const { name } = req.body;
+  if (!name) {
+    return res.status(400).send("Name required");
+  }
+
+  const personQueued = People.enqueue(name);
+  return res.status(201).json(personQueued);
 });
 
 module.exports = router;
