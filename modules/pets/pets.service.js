@@ -42,13 +42,21 @@ module.exports = {
   },
   getNextCat() {
     const cat = pets.cats.show();
-    const catSerialized = serializePet(cat.value);
-    return catSerialized;
+    if (cat !== null) {
+      const catSerialized = serializePet(cat.value);
+      return catSerialized;
+    } else {
+      return null;
+    }
   },
   getNextDog() {
     const dog = pets.dogs.show();
-    const dogSerialized = serializePet(dog.value);
-    return dogSerialized;
+    if (dog !== null) {
+      const dogSerialized = serializePet(dog.value);
+      return dogSerialized;
+    } else {
+      return null;
+    }
   },
   dequeue(type) {
     if (type !== "cat" && type !== "dog") {

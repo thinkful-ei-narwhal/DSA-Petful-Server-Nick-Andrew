@@ -1,14 +1,10 @@
 const express = require("express");
-const json = require("body-parser").json();
-
 const Pets = require("./pets.service");
-const People = require("../people/people.service");
-
 const router = express.Router();
 
 router
   .route("/cat")
-  .get((req, res, next) => {
+  .get((req, res) => {
     // Return all pets currently up for adoption.
     const cat = Pets.getNextCat();
     res.json(cat);
