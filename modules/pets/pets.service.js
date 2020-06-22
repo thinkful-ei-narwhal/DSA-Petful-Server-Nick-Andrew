@@ -66,4 +66,12 @@ module.exports = {
       ? serializePet(pets.cats.dequeue())
       : serializePet(pets.dogs.dequeue());
   },
+  enqueue(type, animal) {
+    if (type !== "cat" && type !== "dog") {
+      throw new Error("Supply the correct type to dequeue");
+    }
+    return type === "cat"
+      ? serializePet(pets.cats.enqueue(animal))
+      : serializePet(pets.dogs.enqueue(animal));
+  },
 };

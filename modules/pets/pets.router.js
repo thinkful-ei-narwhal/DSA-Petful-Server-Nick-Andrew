@@ -11,6 +11,8 @@ router
   })
   .delete((req, res) => {
     const removedAnimal = Pets.dequeue("cat");
+    //using this enqueue to keep the list of animals to adopt never ending
+    Pets.enqueue("cat", removedAnimal);
     res.status(204).json(removedAnimal).end();
   });
 
@@ -23,6 +25,8 @@ router
   })
   .delete((req, res) => {
     const removedAnimal = Pets.dequeue("dog");
+    //using this enqueue to keep the list of animals to adopt never ending
+    Pets.enqueue("dog", removedAnimal);
     res.status(204).json(removedAnimal).end();
   });
 
