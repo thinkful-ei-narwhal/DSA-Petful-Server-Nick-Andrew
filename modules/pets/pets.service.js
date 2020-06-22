@@ -71,7 +71,7 @@ module.exports = {
       throw new Error("Supply the correct type to dequeue");
     }
     return type === "cat"
-      ? serializePet(pets.cats.enqueue(animal))
-      : serializePet(pets.dogs.enqueue(animal));
+      ? pets.cats.enqueue(serializePet(animal))
+      : pets.dogs.enqueue(serializePet(animal));
   },
 };
